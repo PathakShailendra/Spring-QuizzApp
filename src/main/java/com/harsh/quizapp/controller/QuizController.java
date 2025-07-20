@@ -1,6 +1,7 @@
 package com.harsh.quizapp.controller;
 
 import com.harsh.quizapp.model.QuestionWrapper;
+import com.harsh.quizapp.model.Response;
 import com.harsh.quizapp.service.QuizService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -26,6 +27,9 @@ public class QuizController {
         return quizService.getQuizQuestions(id);
     }
 
-
+    @PostMapping("submit/{id}")
+    public ResponseEntity<Integer> submitQuiz(@PathVariable Integer id, @RequestBody List<Response> response) {
+        return quizService.calculateResult(id, response);
+    }
 
 }
